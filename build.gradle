@@ -1,0 +1,46 @@
+project.description = "test project description"
+// same as
+// project.setDescription("Test project description2")
+
+task printProjectDescription {
+    doLast {
+	println "project description is " + project.description
+    }
+}
+
+task printTaskName {
+    doLast { // adding an action to end of action list
+        Task task -> println "task name is ${task.name}"
+    }
+}
+
+task printHelloWorld {
+    doLast {
+	println "hello, world!"
+    }
+}
+
+// another way to create a Task
+project.getTasks().create('printSomeText') {
+    println "printing some text"
+}
+
+task usingTaskObject {
+    doLast {
+	taskObject -> println taskObject.name
+    }
+
+    doFirst { // adding an action at the beginning of actions list
+	println "let's do something first"
+    }
+
+    doLast {
+	println "more last-minute actions"
+    }
+}
+
+task implicitTaskObject {
+    doLast {
+	println "implicit task object '${it.name}' passed to action"
+    }
+}
