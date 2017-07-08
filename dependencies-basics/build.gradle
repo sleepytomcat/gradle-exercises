@@ -1,0 +1,41 @@
+// *****************************************
+task first {
+    doLast { task ->
+	println "running ${task.name} task" // "" strings support substitution
+    }
+}
+
+first.dependsOn('second')
+
+// *****************************************
+task second {
+    doLast { task ->
+	println 'running ${task.name} task' // '' strings do not support substitution
+    }
+}
+
+second.dependsOn(['third'])
+second.dependsOn(['fourth'])
+
+// *****************************************
+task third {
+    doLast { task ->
+	println "running ${task.name} task"
+    }
+}
+
+third.dependsOn 'fifth'
+
+// *****************************************
+task fourth(dependsOn: 'fifth') {
+    doLast { task ->
+	println "running ${task.name} task"
+    }
+}
+
+// *****************************************
+task fifth {
+    doLast { task ->
+	println "running ${task.name} task"
+    }
+}
