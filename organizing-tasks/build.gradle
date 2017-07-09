@@ -1,0 +1,15 @@
+defaultTasks 'second' 
+
+def groupName = 'named-group-of-tasks'
+
+task first(description: 'Some preparations for the second task', group: groupName) {
+    doLast {
+        println "first task running" 
+    } 
+}
+ 
+task second(dependsOn: first, description: 'Does something important', group: groupName) {
+    doLast {
+        println "second task running" 
+    }
+}

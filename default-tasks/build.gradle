@@ -1,0 +1,7 @@
+def printTaskName = {task -> println "running ${task.name} task"}
+
+task first << printTaskName 
+task second << printTaskName 
+task third << printTaskName 
+
+defaultTasks 'second', 'third'
