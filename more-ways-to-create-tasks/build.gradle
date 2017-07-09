@@ -1,0 +1,46 @@
+// **********************************************
+def firstTaskName = 'first'
+task(firstTaskName){
+    doLast {
+        println "first task running" 
+    } 
+}
+ 
+// **********************************************
+def secondTaskName = 'second'
+task(secondTaskName, dependsOn: firstTaskName){
+    doLast {
+        println "second task running" 
+    } 
+}
+
+// **********************************************
+def thirdTaskName = 'third'
+task "${thirdTaskName}"(dependsOn: secondTaskName){
+    doLast {
+        println "third task running" 
+    } 
+}
+
+// **********************************************
+def environments = ['DEV', 'TEST', 'PROD']
+environments.forEach{ environment ->
+    task "deployTo${environment}"(dependsOn: third) {
+	doLast {
+	    println "task to deploy to ${environment}"
+	}
+    }
+}
+
+// **********************************************
+// Task rules provide a way to generate task on-the-fly, 
+// based on gradle command-line parameters.
+tasks.addRule("Pattern piiing") {taskName ->
+    if (taskName.startsWith('ping')) {
+	task(taskName, dependsOn: deployToTEST) {
+	    doLast {
+		println "Task ${taskName} generated on-the-fly, pinging ${taskName - 'ping'}"
+	    }
+	}
+    }
+}
