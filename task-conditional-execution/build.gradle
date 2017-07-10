@@ -1,0 +1,27 @@
+import static java.util.Calendar.*
+
+// ************************************************************************************
+task withCondition;
+// will execute only if closure returns true; 
+// in this particular case, task will work only on weekdays
+withCondition.onlyIf { task ->
+    def now = Calendar.instance
+    def weekDay = now[DAY_OF_WEEK] 
+    def weekDayInWeekdays = weekDay in [MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY] 
+    println "onlyIf will return ${weekDayInWeekdays}"
+    return weekDayInWeekdays 
+}
+
+withCondition.doLast {
+    println 'running task withCondition'
+}
+
+// ************************************************************************************
+def someDataFile = new File('some-data-file.txt')
+task executeIfFileExists;
+executeIfFileExists.doLast {
+    println 'running task'
+}
+executeIfFileExists.onlyIf {
+    return someDataFile.exists();
+}
