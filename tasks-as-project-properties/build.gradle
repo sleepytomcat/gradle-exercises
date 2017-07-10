@@ -1,0 +1,21 @@
+task 'simple'
+
+simple.description = 'some simple task'
+simple.group = 'some task group'
+simple.dependsOn 'basic'
+simple.dependsOn = ['very-basic'] // note: actually replaces 'basic'
+
+simple.doLast {
+    println 'running task simple'
+}
+
+project.simple.doLast {
+    println 'done task simple'
+}
+
+project.simple.doFirst {
+    println 'starting task simple'
+}
+
+task 'basic'
+task 'very-basic'
