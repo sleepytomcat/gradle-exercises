@@ -1,5 +1,11 @@
 task first
 first.ext.absolutely_new_property = 'hello!' // use .ext for new custom properties
+first.ext {
+    another_new_property = "more hello!"
+    more_new_property = "wow!"   
+}
 first.doLast {task ->
     println "task ${task.name} says '${ext.absolutely_new_property}'"
+    println "task ${task.name} says '${ext.another_new_property}'"
+    println "task ${task.name} says '${ext.more_new_property}'"
 }
