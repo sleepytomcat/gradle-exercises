@@ -1,3 +1,5 @@
+description = "My project description (will be displayed by gradle during build)"
+
 task compile {
     doLast {
 	println 'compiling source'
@@ -17,7 +19,15 @@ task test(dependsOn: [compile, compileTests]) {
 }
 
 task dist(dependsOn: [compile, test]) {
+    description = "dist task description goes here"
+    group = "my-group"
     doLast {
 	println 'building the distribution'
+    }
+}
+
+task failure {
+    doLast {
+	throw new GradleException()
     }
 }
