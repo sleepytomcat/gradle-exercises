@@ -1,0 +1,5 @@
+task compile {
+    doLast {
+	println 'compiling source using alternative build file'
+    }
+}
