@@ -114,7 +114,7 @@ echo "=================================================================="
 gradle --status
 
 echo "=================================================================="
-echo "20) Stop running gradle daemon build processes"
+echo "21) Stop running gradle daemon build processes"
 echo "=================================================================="
 gradle --status
 gradle --stop
