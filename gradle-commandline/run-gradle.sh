@@ -104,3 +104,18 @@ echo "=================================================================="
 echo "19) dry run - use -m option"
 echo "=================================================================="
 gradle -m dist --console plain
+
+echo "=================================================================="
+echo "20) list running gradle daemon build processes"
+echo "    Daemon gradle processes can be disabled by" 
+echo "    setting 'org.gradle.daemon=false'"
+echo "    in <USER_HOME/.gradle/gradle.properties"
+echo "=================================================================="
+gradle --status
+
+echo "=================================================================="
+echo "20) Stop running gradle daemon build processes"
+echo "=================================================================="
+gradle --status
+gradle --stop
+jps
