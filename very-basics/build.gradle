@@ -22,7 +22,7 @@ task printHelloWorld {
 
 // another way to create a Task
 project.getTasks().create('printSomeText') {
-    println "printing some text"
+    println "printing some text while creating 'printSomeText' task"
 }
 
 task usingTaskObject {
